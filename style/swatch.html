@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marrow Swatch</title>
+<style>
+  :root {
+    --page: #faf7f0; --panel: #f3efe6; --ink: #1d1d1f; --ink2: #55524c; --muted: #8a867e; --grid: #e7e3da;
+    --cxcl11: #c8243c; --cxcr3: #00897b; --ackr3: #6a4fb8; --myeloid: #c47f00; --oc: #d0559a;
+    --nk: #4a9a2e; --caf: #2f6db5; --tumor: #a8662e; --other: #b9b3a8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.55 Arial, Helvetica, "Microsoft YaHei", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: .2px; }
+  h2 { font-size: 15px; margin: 36px 0 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink2); }
+  .sub { color: var(--ink2); margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .chip { background: #fff; border-radius: 10px; padding: 10px; border: 1px solid var(--grid); display: flex; gap: 10px; align-items: center; }
+  .dot { width: 40px; height: 40px; border-radius: 8px; flex: none; }
+  .chip b { display: block; font-size: 13px; }
+  .chip code { font-size: 12px; color: var(--muted); }
+  .ramp { display: flex; height: 34px; border-radius: 8px; overflow: hidden; border: 1px solid var(--grid); }
+  .ramp span { flex: 1; }
+  .ramp-label { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .pair { display: flex; gap: 12px; flex-wrap: wrap; }
+  .card { background: #fff; border: 1px solid var(--grid); border-radius: 12px; padding: 16px; }
+  .art { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .note { color: var(--ink2); font-size: 13px; }
+  .type p { margin: 4px 0; }
+  .t7 { font-size: 9.3px; } .t8 { font-size: 10.7px; font-weight: bold; } .t9 { font-size: 12px; font-weight: bold; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Marrow · 骨与免疫视觉系统</h1>
+  <p class="sub">OS-CXCL11 Atlas 全部论文图、图形摘要和网页平台共用这一套配色。颜色只取自 <code>style/palette.json</code>。</p>
+
+  <h2>实体色（颜色即语义）</h2>
+  <div class="grid">
+    <div class="chip"><span class="dot" style="background:var(--cxcl11)"></span><div><b>CXCL11</b><code>#c8243c 深红</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--cxcr3)"></span><div><b>CXCR3 / T 细胞</b><code>#00897b 青绿</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--ackr3)"></span><div><b>ACKR3 / 内皮</b><code>#6a4fb8 紫</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--myeloid)"></span><div><b>髓系 / 巨噬</b><code>#c47f00 琥珀</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--oc)"></span><div><b>破骨细胞</b><code>#d0559a 洋红</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--nk)"></span><div><b>NK 细胞</b><code>#4a9a2e 绿</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--caf)"></span><div><b>成纤维 / CAF</b><code>#2f6db5 蓝</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--tumor)"></span><div><b>成骨型肿瘤细胞</b><code>#a8662e 赭</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--other)"></span><div><b>其他</b><code>#b9b3a8 骨灰</code></div></div>
+  </div>
+  <p class="note">校验结果（OKLab ΔE×100，Machado 2009 色盲模拟，白底）：主轴三色两两之间色盲 ΔE ≥ 9.5，普通视觉 ≥ 22.2；8 色相邻对色盲 ΔE ≥ 9.5，普通视觉 ≥ 21.0；对比度全部 ≥ 3:1。全部通过。</p>
+
+  <h2>高 / 低分组</h2>
+  <div class="pair">
+    <div class="chip"><span class="dot" style="background:var(--cxcl11)"></span><div><b>High</b><code>#c8243c</code></div></div>
+    <div class="chip"><span class="dot" style="background:var(--caf)"></span><div><b>Low</b><code>#2f6db5</code></div></div>
+  </div>
+  <p class="note">色盲模拟下 ΔE 19.3，普通视觉下 ΔE 29.3。用于 KM 曲线、箱线图等两组比较。</p>
+
+  <h2>连续表达（os_seq）</h2>
+  <div class="ramp"><span style="background:#ece8e1"></span><span style="background:#e8a3a8"></span><span style="background:#d9626f"></span><span style="background:#c8243c"></span><span style="background:#9b1530"></span><span style="background:#6b0d22"></span></div>
+  <div class="ramp-label"><span>低 / 未检出</span><span>高</span></div>
+
+  <h2>相关性与 z-score（os_div）</h2>
+  <div class="ramp"><span style="background:#163659"></span><span style="background:#204f86"></span><span style="background:#2f6db5"></span><span style="background:#6d98d0"></span><span style="background:#9fbde3"></span><span style="background:#f2efe9"></span><span style="background:#e8a3a8"></span><span style="background:#d9626f"></span><span style="background:#c8243c"></span><span style="background:#9b1530"></span><span style="background:#6b0d22"></span></div>
+  <div class="ramp-label"><span>−1</span><span>0</span><span>+1</span></div>
+
+  <h2>图形摘要美术方向（概念小样，非数据）</h2>
+  <div class="card">
+    <svg class="art" viewBox="0 0 880 420" role="img" aria-label="概念示意：骨皮质中的肿瘤岛释放 CXCL11，招募 CXCR3 阳性 T 细胞，同时被 ACKR3 阳性血管清除">
+      <defs>
+        <radialGradient id="cx" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c8243c" stop-opacity=".55"/>
+          <stop offset="55%" stop-color="#c8243c" stop-opacity=".16"/>
+          <stop offset="100%" stop-color="#c8243c" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="trab" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+          <path d="M0 11 H22" stroke="#d9cfbb" stroke-width="1.2"/>
+        </pattern>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="#00897b"/>
+        </marker>
+      </defs>
+      <rect width="880" height="420" fill="#faf7f0"/>
+      <!-- cortical bone band -->
+      <path d="M0 60 C 220 20, 660 20, 880 60 L880 0 L0 0 Z" fill="#e9e1d1"/>
+      <path d="M0 60 C 220 20, 660 20, 880 60" fill="none" stroke="#d3c7b0" stroke-width="2"/>
+      <!-- trabecular field -->
+      <path d="M0 60 C 220 20, 660 20, 880 60 L880 120 C 660 90, 220 90, 0 120 Z" fill="url(#trab)" opacity=".9"/>
+      <!-- chemokine gradient -->
+      <circle cx="430" cy="235" r="210" fill="url(#cx)"/>
+      <!-- tumour island -->
+      <path d="M350 200 C 360 150, 470 140, 510 185 C 550 230, 520 300, 450 305 C 380 310, 340 260, 350 200 Z" fill="#ead8c6" stroke="#a8662e" stroke-width="2"/>
+      <g fill="#fff" stroke="#a8662e" stroke-width="1.6">
+        <circle cx="400" cy="205" r="13"/><circle cx="440" cy="190" r="13"/><circle cx="478" cy="210" r="13"/>
+        <circle cx="390" cy="245" r="13"/><circle cx="430" cy="235" r="13"/><circle cx="470" cy="250" r="13"/>
+        <circle cx="420" cy="275" r="13"/><circle cx="458" cy="285" r="13"/>
+      </g>
+      <!-- CXCL11 molecules -->
+      <g fill="#c8243c">
+        <circle cx="530" cy="160" r="3.5"/><circle cx="560" cy="210" r="3.5"/><circle cx="330" cy="170" r="3.5"/>
+        <circle cx="315" cy="250" r="3.5"/><circle cx="545" cy="275" r="3.5"/><circle cx="600" cy="185" r="3"/>
+        <circle cx="280" cy="210" r="3"/><circle cx="380" cy="330" r="3.5"/><circle cx="500" cy="335" r="3.5"/>
+      </g>
+      <!-- CXCR3+ T cells migrating in -->
+      <g stroke="#00897b" stroke-width="2" fill="#e0f2ef">
+        <circle cx="150" cy="190" r="17"/><circle cx="700" cy="160" r="17"/><circle cx="740" cy="260" r="17"/><circle cx="120" cy="285" r="17"/>
+      </g>
+      <g stroke="#00897b" stroke-width="2" fill="none" stroke-dasharray="4 5" marker-end="url(#arr)">
+        <path d="M172 195 C 220 200, 250 205, 290 210"/><path d="M680 168 C 640 175, 610 180, 575 190"/>
+        <path d="M720 258 C 670 262, 620 268, 570 272"/><path d="M142 282 C 200 275, 250 262, 300 255"/>
+      </g>
+      <!-- ACKR3+ vessel scavenging -->
+      <path d="M0 375 C 200 345, 420 400, 600 365 S 820 350, 880 372" fill="none" stroke="#6a4fb8" stroke-width="22" stroke-linecap="round" opacity=".18"/>
+      <path d="M0 375 C 200 345, 420 400, 600 365 S 820 350, 880 372" fill="none" stroke="#6a4fb8" stroke-width="2.5"/>
+      <g stroke="#6a4fb8" stroke-width="2" fill="none">
+        <path d="M560 368 v-12 m0 0 l-6 -7 m6 7 l6 -7"/><path d="M640 360 v-12 m0 0 l-6 -7 m6 7 l6 -7"/>
+        <path d="M300 369 v-12 m0 0 l-6 -7 m6 7 l6 -7"/>
+      </g>
+      <g fill="#c8243c"><circle cx="560" cy="342" r="3"/><circle cx="640" cy="334" r="3"/><circle cx="300" cy="343" r="3"/></g>
+      <!-- labels -->
+      <g font-family="Arial, Microsoft YaHei, sans-serif" font-size="15" fill="#1d1d1f">
+        <text x="22" y="36" fill="#55524c">骨皮质</text>
+        <text x="372" y="138" fill="#a8662e" font-weight="bold">肿瘤岛（CXCR3A）</text>
+        <text x="575" y="232" fill="#c8243c" font-weight="bold">CXCL11 梯度</text>
+        <text x="60" y="160" fill="#00897b" font-weight="bold">CXCR3⁺ T 细胞</text>
+        <text x="660" y="408" fill="#6a4fb8" font-weight="bold">ACKR3⁺ 血管：清除</text>
+      </g>
+    </svg>
+    <p class="note">这是美术方向示意，不代表任何数据结论。正式的图形摘要要等结果确定后，按真实发现手工绘制矢量图。</p>
+  </div>
+
+  <h2>字号层级（按论文尺寸放大 1.33 倍显示）</h2>
+  <div class="card type">
+    <p class="t9">a&nbsp;&nbsp;面板字母 9 pt 粗体</p>
+    <p class="t8">面板标题 8 pt 粗体 · CXCL11 high vs low</p>
+    <p class="t7">坐标轴与图例 7 pt · Overall survival (months) · Number at risk</p>
+  </div>
+</main>
+</body>
+</html>

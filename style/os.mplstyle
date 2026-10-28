@@ -1,0 +1,47 @@
+# Marrow visual system for matplotlib. Colours mirror style/palette.json;
+# py/os_style.py loads this file and registers the colormaps.
+
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, Liberation Sans, DejaVu Sans
+font.size: 7
+axes.titlesize: 8
+axes.titleweight: bold
+axes.titlelocation: left
+axes.labelsize: 7
+xtick.labelsize: 7
+ytick.labelsize: 7
+legend.fontsize: 7
+legend.frameon: False
+
+text.color: 1d1d1f
+axes.labelcolor: 1d1d1f
+axes.edgecolor: bfb9ad
+axes.linewidth: 0.4
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: False
+grid.color: e7e3da
+grid.linewidth: 0.3
+xtick.color: 55524c
+ytick.color: 55524c
+xtick.major.width: 0.4
+ytick.major.width: 0.4
+xtick.major.size: 3
+ytick.major.size: 3
+
+axes.prop_cycle: cycler('color', ['c8243c', '00897b', '6a4fb8', 'c47f00', 'd0559a', '4a9a2e', '2f6db5', 'a8662e'])
+lines.linewidth: 1.0
+lines.markersize: 3
+
+figure.facecolor: ffffff
+figure.constrained_layout.use: True
+axes.facecolor: ffffff
+savefig.facecolor: ffffff
+savefig.dpi: 600
+# Keep the exact journal width (85/120/180 mm): no tight bbox cropping/expansion.
+savefig.bbox: standard
+
+# Keep text editable in Illustrator/Inkscape
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none

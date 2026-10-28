@@ -1,0 +1,78 @@
+{
+ "fragment": "data_target_os",
+ "written": "2026-10-05T07:29:02.572665+00:00",
+ "stats": {
+  "target_n_expr_samples": {
+   "value": 88,
+   "display": "88",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS RNA-seq samples (all types)",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_n_primary": {
+   "value": 88,
+   "display": "88",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS primary-tumour patients with RNA-seq",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_n_genes": {
+   "value": 59427,
+   "display": "59427",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS genes after symbol collapse",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_n_os": {
+   "value": 85,
+   "display": "85",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS patients with OS data",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_os_events": {
+   "value": 29,
+   "display": "29",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS deaths",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_n_efs": {
+   "value": 85,
+   "display": "85",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS patients with EFS data",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_efs_events": {
+   "value": 41,
+   "display": "41",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS EFS events",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  },
+  "target_n_metastatic_dx": {
+   "value": 22,
+   "display": "22",
+   "ci": null,
+   "n": null,
+   "desc": "TARGET-OS metastatic at diagnosis",
+   "source": "py/prep_target.py",
+   "fragment": "data_target_os"
+  }
+ }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Marrow",
+  "description": "Bone & immune visual system for the OS-CXCL11 Atlas. Single source of truth for every colour in R, Python and the web atlas.",
+  "font": { "family": "Arial", "fallback": ["Helvetica", "Liberation Sans", "sans-serif"], "min_pt": 7, "base_pt": 7, "title_pt": 8 },
+  "size_mm": { "single": 85, "onehalf": 120, "double": 180, "max_height": 225 },
+  "export": { "dpi": 600, "formats": ["pdf", "tiff"] },
+  "surfaces": {
+    "figure": "#ffffff",
+    "page": "#faf7f0",
+    "panel": "#f3efe6"
+  },
+  "ink": {
+    "primary": "#1d1d1f",
+    "secondary": "#55524c",
+    "muted": "#8a867e",
+    "grid": "#e7e3da",
+    "axis": "#bfb9ad"
+  },
+  "entity": {
+    "CXCL11": "#c8243c",
+    "CXCR3_T": "#00897b",
+    "ACKR3_endothelial": "#6a4fb8",
+    "myeloid": "#c47f00",
+    "osteoclast": "#d0559a",
+    "NK": "#4a9a2e",
+    "fibroblast_CAF": "#2f6db5",
+    "tumor_osteoblastic": "#a8662e",
+    "other": "#b9b3a8"
+  },
+  "categorical_order": [
+    "CXCL11", "CXCR3_T", "ACKR3_endothelial", "myeloid",
+    "osteoclast", "NK", "fibroblast_CAF", "tumor_osteoblastic"
+  ],
+  "groups": {
+    "high": "#c8243c",
+    "low": "#2f6db5"
+  },
+  "sequential": {
+    "crimson": ["#ece8e1", "#e8a3a8", "#d9626f", "#c8243c", "#9b1530", "#6b0d22"]
+  },
+  "diverging": {
+    "negative": ["#163659", "#204f86", "#2f6db5", "#6d98d0", "#9fbde3"],
+    "mid": "#f2efe9",
+    "positive": ["#e8a3a8", "#d9626f", "#c8243c", "#9b1530", "#6b0d22"]
+  },
+  "validation": {
+    "method": "OKLab dE x100, Machado 2009 CVD simulation, surface #ffffff",
+    "axis_triad_all_pairs": { "cvd_worst": 9.5, "normal_worst": 22.2, "status": "PASS" },
+    "entity_8_adjacent": { "cvd_worst": 9.5, "normal_worst": 21.0, "min_contrast": ">=3:1", "status": "PASS" },
+    "groups_high_low": { "cvd_worst": 19.3, "normal_worst": 29.3, "status": "PASS" },
+    "sequential_crimson_marks": { "monotone": true, "light_end_contrast": 2.05, "status": "PASS" },
+    "notes": [
+      "UMAP/scatter colour >3 entities only with direct cluster labels (all-pairs cap = first 3 slots).",
+      "More than 8 cell types: fold extras into 'other' or facet; never generate new hues.",
+      "Diverging ramps are continuous (heatmaps); the light ends approach the neutral mid by design."
+    ]
+  }
+}

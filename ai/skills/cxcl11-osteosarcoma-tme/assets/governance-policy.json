@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "os-cxcl11-research-governance-v1",
+  "identity_model": "locally-declared-not-authenticated",
+  "revocation_roles": ["research-steward", "reproducibility-auditor", "reviewer-2"],
+  "gates": [
+    {
+      "id": "gate0", "label": "Setup and novelty", "depends_on": [],
+      "proposer_roles": ["research-steward", "bioinfo-analyst"],
+      "reviewer_roles": ["reviewer-2", "reproducibility-auditor"],
+      "required_evidence": {"novelty_report": 1, "environment_report": 1}
+    },
+    {
+      "id": "gate1", "label": "Data quality", "depends_on": ["gate0"],
+      "proposer_roles": ["research-steward", "bioinfo-analyst"],
+      "reviewer_roles": ["reproducibility-auditor"],
+      "required_evidence": {"cohort_qc": 1, "data_card": 1, "batch_assessment": 1}
+    },
+    {
+      "id": "gate2", "label": "Go / No-Go", "depends_on": ["gate1"],
+      "proposer_roles": ["research-steward", "bioinfo-analyst"],
+      "reviewer_roles": ["reviewer-2", "reproducibility-auditor"],
+      "required_evidence": {"go_no_go_report": 1, "stats_registry": 1}
+    },
+    {
+      "id": "gate3", "label": "Convergence and external validation", "depends_on": ["gate2"],
+      "proposer_roles": ["research-steward", "bioinfo-analyst"],
+      "reviewer_roles": ["reviewer-2", "reproducibility-auditor"],
+      "required_evidence": {"validation_report": 1, "leakage_audit": 1, "stats_registry": 1}
+    },
+    {
+      "id": "gate4", "label": "Figure review", "depends_on": ["gate3"],
+      "proposer_roles": ["research-steward", "figure-artist"],
+      "reviewer_roles": ["reviewer-2"],
+      "required_evidence": {"figure_manifest": 1, "figure_review": 1}
+    },
+    {
+      "id": "gate5", "label": "Local atlas validation", "depends_on": ["gate3"],
+      "proposer_roles": ["research-steward", "bioinfo-analyst"],
+      "reviewer_roles": ["reproducibility-auditor", "reviewer-2"],
+      "required_evidence": {"atlas_smoke_test": 1, "accessibility_review": 1}
+    },
+    {
+      "id": "gate6", "label": "Submission readiness", "depends_on": ["gate4", "gate5"],
+      "proposer_roles": ["research-steward", "manuscript-writer"],
+      "reviewer_roles": ["reviewer-2"],
+      "required_evidence": {"claims_audit": 1, "reviewer_resolution": 1, "reproducibility_report": 1}
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {
+      "id": "baseline-review",
+      "title_en": "Establish a reviewed governance baseline",
+      "title_zh": "建立经过复核的治理基线",
+      "owner": "research-steward",
+      "reviewer": "reproducibility-auditor",
+      "requires_gates": [],
+      "code": [
+        "py/check_env.py"
+      ],
+      "deliverables": [
+        "docs/private/novelty_report.md"
+      ],
+      "acceptance": [
+        "Reassess dated novelty evidence and environment report; preserve historical approval separately",
+        "Do not infer current novelty from the old note alone"
+      ],
+      "acceptance_zh": [
+        "重新审阅带日期的查新证据和环境报告；单独保留历史批准记录",
+        "不能只靠旧记录推断当前的新颖性"
+      ]
+    },
+    {
+      "id": "validation-cohorts",
+      "title_en": "Recover and verify external validation cohorts",
+      "title_zh": "获取并核实外部验证队列",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reproducibility-auditor",
+      "requires_gates": [
+        "gate0"
+      ],
+      "code": [
+        "py/fetch_geo.py",
+        "py/prep_geo.py"
+      ],
+      "deliverables": [
+        "docs/data_cards/GSE21257.md",
+        "docs/data_cards/GSE16091.md",
+        "docs/data_cards/GSE39055.md",
+        "docs/data_cards/GSE42352.md"
+      ],
+      "acceptance": [
+        "Verify official mirror accessions, file integrity and provenance before analysis",
+        "Map actual clinical fields and endpoints; preserve download failures; update verified flags only after QC"
+      ],
+      "acceptance_zh": [
+        "分析前核实官方镜像的登录号、文件完整性和来源",
+        "映射真实临床字段与终点；保留下载失败记录，质控后才更新 verified"
+      ]
+    },
+    {
+      "id": "freeze-compartments",
+      "title_en": "Prespecify compartment modules",
+      "title_zh": "预先冻结区室模块",
+      "owner": "research-steward",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate0"
+      ],
+      "code": [],
+      "deliverables": [
+        "docs/private/compartment-prespecification.md"
+      ],
+      "acceptance": [
+        "Freeze module gene lists, scoring, splits and sensitivity analyses in config before seeing outcomes",
+        "Do not infer CXCR3 isoforms from gene-level assays that cannot distinguish them"
+      ],
+      "acceptance_zh": [
+        "看结局前在配置中冻结模块基因、评分、数据拆分和敏感性分析",
+        "不能从无法区分亚型的基因水平检测推断 CXCR3 亚型"
+      ]
+    },
+    {
+      "id": "go-no-go",
+      "title_en": "Evaluate the two-cohort Go/No-Go decision",
+      "title_zh": "检验双队列 Go/No-Go",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate1"
+      ],
+      "code": [
+        "py/A_gonogo_cxcl11.py",
+        "workflow/rules/A_clinical.smk"
+      ],
+      "deliverables": [
+        "results/stats/gonogo_cxcl11.json",
+        "docs/private/gonogo-review.md"
+      ],
+      "acceptance": [
+        "Evaluate actual eligible independent cohorts using prespecified config",
+        "Report negative and discordant evidence; a pending second cohort cannot count as validation"
+      ],
+      "acceptance_zh": [
+        "按预设配置评估实际符合条件的独立队列",
+        "报告阴性与方向不一致结果；待获取的第二队列不能算验证"
+      ]
+    },
+    {
+      "id": "single-cell-atlas",
+      "title_en": "Build and check the compartment atlas",
+      "title_zh": "构建并核查单细胞区室图谱",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate1"
+      ],
+      "code": [
+        "workflow/rules/C_tme.smk"
+      ],
+      "deliverables": [
+        "results/tables/compartment_qc.tsv"
+      ],
+      "acceptance": [
+        "Implement missing pipeline rule and reproducible cell QC/annotation",
+        "Assess donor-level support, malignant-cell uncertainty and frozen module definitions"
+      ],
+      "acceptance_zh": [
+        "实现缺少的流水线规则及可复现的细胞质控和注释",
+        "检查供者层面支持、恶性细胞识别不确定性和已冻结模块"
+      ]
+    },
+    {
+      "id": "molecular-track",
+      "title_en": "Implement molecular evidence",
+      "title_zh": "实现分子证据轨道",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate1"
+      ],
+      "code": [
+        "workflow/rules/B_molecular.smk"
+      ],
+      "deliverables": [
+        "results/tables/molecular_summary.tsv"
+      ],
+      "acceptance": [
+        "Prespecify tests, correction and effect-size reporting",
+        "Treat association as association and report all planned comparisons"
+      ],
+      "acceptance_zh": [
+        "预设检验、多重校正和效应量报告",
+        "按关联证据表述，报告全部预定比较"
+      ]
+    },
+    {
+      "id": "immunotherapy-track",
+      "title_en": "Implement transfer validation",
+      "title_zh": "实现免疫治疗迁移验证",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate1"
+      ],
+      "code": [
+        "workflow/rules/D_immunotherapy.smk"
+      ],
+      "deliverables": [
+        "results/tables/icb_transfer_summary.tsv"
+      ],
+      "acceptance": [
+        "Keep non-osteosarcoma transfer evidence explicitly indirect",
+        "Record missing packages/data as blockers, not empty successful outputs"
+      ],
+      "acceptance_zh": [
+        "明确非骨肉瘤迁移证据的间接性质",
+        "缺少软件包或数据就记录阻塞，不能用空产物冒充成功"
+      ]
+    },
+    {
+      "id": "convergence",
+      "title_en": "Externally validate the frozen model",
+      "title_zh": "外部验证冻结模型",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate2"
+      ],
+      "code": [
+        "workflow/rules/E_convergence.smk"
+      ],
+      "deliverables": [
+        "results/tables/external_validation.tsv"
+      ],
+      "acceptance": [
+        "Feature selection and tuning inside nested CV; preserve independent external holdout",
+        "Review discrimination uncertainty, calibration and prespecified acceptance criteria"
+      ],
+      "acceptance_zh": [
+        "特征筛选和调参纳入嵌套交叉验证；保留独立外部留出集",
+        "检查区分度不确定性、校准和预定验收条件"
+      ]
+    },
+    {
+      "id": "figures",
+      "title_en": "Review final figures",
+      "title_zh": "复核最终论文图",
+      "owner": "figure-artist",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate3"
+      ],
+      "code": [
+        "workflow/rules/F_figures.smk"
+      ],
+      "deliverables": [
+        "docs/private/figure-review.md"
+      ],
+      "acceptance": [
+        "Trace figure values to statistics; assess layout and biological labels",
+        "A generated design diagram is not a validated result figure"
+      ],
+      "acceptance_zh": [
+        "图中数值追溯至统计登记；检查布局和生物学标签",
+        "研究设计示意图不等于已验证结果图"
+      ]
+    },
+    {
+      "id": "local-atlas",
+      "title_en": "Implement and verify the local atlas",
+      "title_zh": "实现并验收本地图谱",
+      "owner": "bioinfo-analyst",
+      "reviewer": "reproducibility-auditor",
+      "requires_gates": [
+        "gate3"
+      ],
+      "code": [
+        "app/app.py"
+      ],
+      "deliverables": [
+        "docs/private/atlas-smoke-report.md"
+      ],
+      "acceptance": [
+        "Test real modules at desktop and phone widths; expose data provenance",
+        "Local verification does not authorize public deployment"
+      ],
+      "acceptance_zh": [
+        "在桌面与手机宽度测试真实模块并展示数据来源",
+        "本地验收不构成公开部署授权"
+      ]
+    },
+    {
+      "id": "manuscript",
+      "title_en": "Audit manuscript and resolve review",
+      "title_zh": "审计稿件并解决审稿意见",
+      "owner": "manuscript-writer",
+      "reviewer": "reviewer-2",
+      "requires_gates": [
+        "gate4",
+        "gate5"
+      ],
+      "code": [
+        "py/audit_claims.py"
+      ],
+      "deliverables": [
+        "manuscript/main.md",
+        "docs/private/final-review.md"
+      ],
+      "acceptance": [
+        "Resolve every statistic placeholder from validated registry; report audit exit code",
+        "Resolve reviewer concerns; disclose exploratory/indirect evidence and actual AI usage"
+      ],
+      "acceptance_zh": [
+        "用经过校验的登记表解析全部统计占位符，报告审计退出码",
+        "解决审稿意见；披露探索性、间接证据及实际 AI 使用"
+      ]
+    }
+  ]
+}

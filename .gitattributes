@@ -1,0 +1,25 @@
+* text=auto eol=lf
+*.png binary
+*.tif binary
+*.tiff binary
+*.pdf binary
+
+# Private development layer: excluded from every public release (git archive).
+.claude/ export-ignore
+.claude/** export-ignore
+CLAUDE.md export-ignore
+.gitattributes export-ignore
+docs/private/ export-ignore
+docs/private/** export-ignore
+# Manuscript source is published by the journal, not in the code release.
+manuscript/ export-ignore
+manuscript/** export-ignore
+
+# Windows launchers need CRLF
+*.cmd text eol=crlf
+
+# Local decision evidence is not part of public source exports.
+results/governance/ export-ignore
+results/governance/** export-ignore
+.science/ export-ignore
+.env export-ignore

@@ -1,0 +1,143 @@
+{
+ "gonogo_n_cohorts": {
+  "value": 1,
+  "display": "1",
+  "ci": null,
+  "n": null,
+  "desc": "cohorts with evaluable CXCL11 survival analysis",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_efs_cxcl11_events": {
+  "value": 41,
+  "display": "41",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS EFS: events",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_efs_cxcl11_hr": {
+  "value": 0.6362342150306967,
+  "display": "0.64",
+  "ci": [
+   0.44,
+   0.93
+  ],
+  "n": 84,
+  "desc": "TARGET-OS EFS: HR per 1 SD CXCL11 (Cox, exploratory gate)",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_efs_cxcl11_p": {
+  "value": 0.01847571918828057,
+  "display": "0.018",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS EFS: Wald P for CXCL11 per SD",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_os_cxcl11_events": {
+  "value": 29,
+  "display": "29",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS OS: events",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_os_cxcl11_hr": {
+  "value": 0.6022597168040756,
+  "display": "0.60",
+  "ci": [
+   0.37,
+   0.97
+  ],
+  "n": 84,
+  "desc": "TARGET-OS OS: HR per 1 SD CXCL11 (Cox, exploratory gate)",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "gonogo_targetos_os_cxcl11_p": {
+  "value": 0.037024138935627816,
+  "display": "0.037",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS OS: Wald P for CXCL11 per SD",
+  "source": "py/A_gonogo_cxcl11.py",
+  "fragment": "gonogo_cxcl11"
+ },
+ "target_efs_events": {
+  "value": 41,
+  "display": "41",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS EFS events",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_efs": {
+  "value": 85,
+  "display": "85",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS patients with EFS data",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_expr_samples": {
+  "value": 88,
+  "display": "88",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS RNA-seq samples (all types)",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_genes": {
+  "value": 59427,
+  "display": "59427",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS genes after symbol collapse",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_metastatic_dx": {
+  "value": 22,
+  "display": "22",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS metastatic at diagnosis",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_os": {
+  "value": 85,
+  "display": "85",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS patients with OS data",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_n_primary": {
+  "value": 88,
+  "display": "88",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS primary-tumour patients with RNA-seq",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ },
+ "target_os_events": {
+  "value": 29,
+  "display": "29",
+  "ci": null,
+  "n": null,
+  "desc": "TARGET-OS deaths",
+  "source": "py/prep_target.py",
+  "fragment": "data_target_os"
+ }
+}

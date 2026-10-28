@@ -1,0 +1,109 @@
+# Single source of truth for datasets, parameters and seeds.
+# Every dataset entry carries `verified: false` until its sample size, platform and
+# endpoints have been checked against the downloaded files (see docs/data_cards/).
+
+project:
+  name: OS-CXCL11-Atlas
+  seed: 20261005
+  threads: 16
+
+genes:
+  focal: CXCL11
+  axis:
+    ligands: [CXCL9, CXCL10, CXCL11, CXCL12]
+    receptors: [CXCR3, ACKR3, CXCR4]
+    ifn_driver: [IFNG, STAT1, IRF1, JAK1, JAK2]
+    effector: [CD8A, CD8B, GZMA, GZMB, PRF1, IFNG, NKG7]
+    checkpoints: [CD274, PDCD1LG2, PDCD1, CTLA4, LAG3, HAVCR2, TIGIT, CD276, IDO1]
+
+datasets:
+  bulk:
+    TARGET-OS:
+      source: UCSC Xena (GDC hub) / GDC
+      assay: RNA-seq
+      n_expected: 88            # verified: 88 primary tumours; OS evaluable 84 (29 deaths); EFS 84 (41 events)
+      endpoints: [OS, EFS]
+      clinical: [age, sex, primary_site, metastasis_at_diagnosis, histologic_response]
+      role: discovery
+      verified: true            # docs/data_cards/TARGET-OS.md (2026-10-05)
+    GSE21257:
+      source: GEO
+      platform: GPL10295
+      assay: microarray (Illumina)
+      n_expected: 53
+      endpoints: [OS, metastasis_free]
+      role: validation
+      verified: false
+    GSE16091:
+      source: GEO
+      platform: GPL96
+      assay: microarray (Affymetrix HG-U133A)
+      n_expected: 34
+      endpoints: [OS]
+      role: validation
+      verified: false
+    GSE39055:
+      source: GEO
+      platform: GPL14951
+      assay: microarray (Illumina WG-DASL)
+      n_expected: 37
+      endpoints: [OS, recurrence]
+      role: validation
+      verified: false
+    GSE42352:
+      source: GEO
+      assay: microarray (Illumina)
+      n_expected: 84
+      endpoints: [metastasis_free]
+      role: validation / tumour-vs-normal reference
+      verified: false
+  single_cell:
+    GSE152048:
+      source: GEO
+      assay: 10x scRNA-seq
+      n_expected: 11
+      sites: [primary, recurrent, lung_metastasis]
+      verified: false
+    GSE162454:
+      source: GEO
+      assay: 10x scRNA-seq
+      n_expected: 6
+      verified: false
+  spatial:
+    JHO2024_OS_spatial:
+      source: "J Hematol Oncol 2024, doi:10.1186/s13045-024-01598-7 (citation checked via Crossref 2026-10-28; data availability to be confirmed)"
+      verified: false
+  icb:
+    # Pan-cancer immune-checkpoint-blockade cohorts used for transfer validation.
+    # Not osteosarcoma -- must be reported as indirect evidence.
+    IMvigor210: {cancer: urothelial, drug: atezolizumab, verified: false}
+    GSE91061: {cancer: melanoma, drug: nivolumab, verified: false}
+    GSE78220: {cancer: melanoma, drug: anti-PD-1, verified: false}
+    PRJEB23709: {cancer: melanoma, drug: anti-PD-1 +/- anti-CTLA-4, verified: false}
+  resources:
+    DepMap: {use: osteosarcoma cell-line expression and dependency, verified: false}
+    GDSC2: {use: oncoPredict training set, verified: false}
+    TCGA-SARC: {use: pan-sarcoma sensitivity analysis, verified: false}
+
+params:
+  qc:
+    min_samples_per_cohort: 20
+  survival:
+    cutpoint: median          # pre-specified; maxstat only as sensitivity analysis
+    meta_model: random        # random-effects meta-analysis of per-cohort HRs
+  single_cell:
+    min_genes: 300
+    max_mt_pct: 20
+    n_hvg: 3000
+    integration: harmony
+    resolution: 0.6
+  ml:
+    outer_folds: 5
+    inner_folds: 5
+    repeats: 10
+    algorithms: [coxnet, rsf, gbm_cox, coxboost]
+  go_no_go:
+    min_cohorts_concordant: 2
+    alpha: 0.05
+    # Cohorts enter the gate only after they are verified and harmonised (data card written).
+    cohorts: [TARGET-OS]

@@ -1,0 +1,37 @@
+# OS-CXCL11 Atlas: four parallel analysis tracks converging on one model.
+#
+#   uv run snakemake -n                # dry run
+#   uv run snakemake --cores 16        # full run
+#
+# Tracks (rule files are added as each stage is implemented):
+#   rules/data.smk          stage 1  acquisition + harmonisation
+#   rules/A_clinical.smk    track A  clinical / orthopaedic oncology
+#   rules/B_molecular.smk   track B  CXCL11 regulation, CXCR3 vs ACKR3
+#   rules/C_tme.smk         track C  deconvolution, single-cell, spatial
+#   rules/D_immunotherapy.smk track D ICB transfer, drug sensitivity
+#   rules/E_convergence.smk axis balance score, ML model, validation
+#   rules/F_figures.smk     figure assembly
+
+from pathlib import Path
+
+configfile: "config/config.yaml"
+
+include: "rules/common.smk"
+include: "rules/data.smk"
+include: "rules/A_clinical.smk"
+include: "rules/F_figures.smk"
+
+
+rule all:
+    input:
+        "results/stats.json",
+        "results/figures/fig1_study_design.pdf",
+
+
+rule collect_stats:
+    input:
+        STAT_FRAGMENTS,
+    output:
+        "results/stats.json",
+    shell:
+        "python py/stats_registry.py collect {input} -o {output}"

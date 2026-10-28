@@ -1,0 +1,37 @@
+[project]
+name = "os-cxcl11-atlas"
+version = "0.1.0"
+description = "CXCL11-CXCR3/ACKR3 axis in the osteosarcoma immune microenvironment: analysis pipeline and web atlas"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+dependencies = [
+  # core / workflow
+  "snakemake>=9",
+  "pandas>=2.2",
+  "numpy>=2.0",
+  "scipy>=1.13",
+  "pyyaml>=6",
+  "requests>=2.32",
+  "pyarrow>=17",
+  "openpyxl>=3.1",
+  "matplotlib>=3.9",
+  # single-cell
+  "scanpy>=1.10",
+  "anndata>=0.10",
+  "harmonypy>=0.0.10,<0.1",   # 2.x needs a C++/BLAS build on Windows; 0.0.x is pure Python
+  "decoupler>=1.8",
+  # machine learning / survival
+  "scikit-learn>=1.5",
+  "scikit-survival>=0.23",
+  "lifelines>=0.29",
+  "shap>=0.46",
+  # web atlas
+  "streamlit>=1.38",
+  "plotly>=5.24",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
